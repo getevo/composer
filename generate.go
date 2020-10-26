@@ -71,8 +71,8 @@ func (o *Image) Scale(x, y float64) {
 }
 
 func (o *Image) Resize(w, h int) {
-	im := resize.Resize(uint(o.Width), uint(o.Height), o.Context.Image(), resize.Lanczos3)
-	o.Context = gg.NewContext(o.Width, o.Height)
+	im := resize.Resize(uint(w), uint(h), o.Context.Image(), resize.Lanczos3)
+	o.Context = gg.NewContext(w, h)
 	o.Context.DrawImage(im, 0, 0)
 }
 
