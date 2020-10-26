@@ -148,18 +148,21 @@ func (o *Object) drawTextTo(context *gg.Context) error {
 	}
 	top := float64(o.Top)
 	left := float64(o.Left)
+	var align = gg.AlignLeft
 	if o.VAlign == MIDDLE {
 		top -= th / 2
 	} else if o.VAlign == BOTTOM {
 		top -= th
 	}
 	if o.HAlign == CENTER {
+		align = gg.AlignCenter
 		left -= tw / 2
 	} else if o.HAlign == RIGHT {
+		align = gg.AlignRight
 		left -= tw
 	}
 	if o.WordWrap {
-		context.DrawStringWrapped(o.Value, left, top, 0, 0, float64(o.Width), o.LineSpacing, gg.AlignLeft)
+		context.DrawStringWrapped(o.Value, left, top, 0, 0, float64(o.Width), o.LineSpacing, align)
 	} else {
 		context.DrawString(o.Value, left, top)
 	}
