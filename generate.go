@@ -156,10 +156,9 @@ func (o *Object) drawTextTo(context *gg.Context) error {
 	}
 	if o.HAlign == CENTER {
 		align = gg.AlignCenter
-		left -= tw / 2
 	} else if o.HAlign == RIGHT {
 		align = gg.AlignRight
-		left -= tw
+		left += tw
 	}
 	if o.WordWrap {
 		context.DrawStringWrapped(o.Value, left, top, 0.5, 0.5, float64(o.Width), o.LineSpacing, align)
