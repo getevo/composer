@@ -70,6 +70,12 @@ func (o *Image) Scale(x, y float64) {
 	o.Context.Scale(x, y)
 }
 
+func (o *Image) Resize(w, h int) {
+	im := resize.Resize(uint(o.Width), uint(o.Height), o.Context.Image(), resize.Lanczos3)
+	o.Context = gg.NewContext(o.Width, o.Height)
+	o.Context.DrawImage(im, 0, 0)
+}
+
 func (o *Object) drawImageTo(context *gg.Context) error {
 	var im *image.Image
 	if o.Cache {
