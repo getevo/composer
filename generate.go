@@ -162,7 +162,7 @@ func (o *Object) drawTextTo(context *gg.Context) error {
 		left -= tw
 	}
 	if o.WordWrap {
-		context.DrawStringWrapped(o.Value, left, top, 0, 0, float64(o.Width), o.LineSpacing, align)
+		context.DrawStringWrapped(o.Value, left, top, 0.5, 0.5, float64(o.Width), o.LineSpacing, align)
 	} else {
 		context.DrawString(o.Value, left, top)
 	}
