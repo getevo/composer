@@ -2,6 +2,7 @@ package composer
 
 import (
 	"fmt"
+	"github.com/chai2010/webp"
 	"github.com/fogleman/gg"
 	"github.com/nfnt/resize"
 	"image"
@@ -60,6 +61,18 @@ func (o *Image) EncodeJPG(w io.Writer, j *jpeg.Options) error {
 
 func (o *Image) EncodePNG(w io.Writer) error {
 	return o.Context.EncodePNG(w)
+}
+
+func (o *Image) SaveWebP(path string, lossless, exact bool, quality float32) error {
+	if o.Context == nil {
+		return fmt.Errorf("empty context")
+	}
+	return webp.Save(path, o.Context.Image(), &webp.Options{
+		Lossless: lossless,
+		Quality:  quality,
+		Exact:    exact,
+	})
+
 }
 
 func (o *Image) Image() image.Image {
