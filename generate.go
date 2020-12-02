@@ -32,6 +32,10 @@ func (o *Object) DrawTo(context *gg.Context) error {
 		err = o.drawImageTo(context)
 	} else if o.Type == TEXT {
 		err = o.drawTextTo(context)
+	} else if o.Type == RECT {
+		err = o.drawRectTo(context)
+	} else if o.Type == OVAL {
+		err = o.drawOvalTo(context)
 	}
 
 	return err
@@ -87,6 +91,28 @@ func (o *Image) Resize(w, h int) {
 	im := resize.Resize(uint(w), uint(h), o.Context.Image(), resize.Lanczos3)
 	o.Context = gg.NewContext(w, h)
 	o.Context.DrawImage(im, 0, 0)
+}
+
+func (o *Object) drawOvalTo(context *gg.Context) error {
+	context.DrawEllipse(float64(o.Left), float64(o.Top), float64(o.Width), float64(o.Height))
+	c, err := ParseColor(o.Color)
+	if err != nil {
+		return err
+	}
+	context.SetColor(c)
+	context.Fill()
+	return nil
+}
+
+func (o *Object) drawRectTo(context *gg.Context) error {
+	context.DrawRectangle(float64(o.Left), float64(o.Top), float64(o.Width), float64(o.Height))
+	c, err := ParseColor(o.Color)
+	if err != nil {
+		return err
+	}
+	context.SetColor(c)
+	context.Fill()
+	return nil
 }
 
 func (o *Object) drawImageTo(context *gg.Context) error {
