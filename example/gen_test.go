@@ -45,8 +45,14 @@ func TestAddInt(t *testing.T) {
 			{
 				Name: "Circle",
 				Type: composer.OVAL,
-				Left: 525, Top: 350, Width: 300, Height: 300, HAlign: composer.CENTER, VAlign: composer.MIDDLE,
-				Color: "rgba(255,0,0,128)",
+				Left: 525, Top: 350, Width: 300, Height: 300,
+				Color: "rgba(255,0,0,255)",
+			},
+			{
+				Name: "rect",
+				Type: composer.RECT,
+				Left: 100, Top: 100, Width: 64, Height: 64,
+				Color: "rgba(50,50,50,255)",
 			},
 		},
 	}

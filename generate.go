@@ -3,8 +3,8 @@ package composer
 import (
 	"fmt"
 	"github.com/chai2010/webp"
-	"github.com/fogleman/gg"
 	"github.com/nfnt/resize"
+	"gopkg.in/fogleman/gg.v1"
 	"image"
 	"image/jpeg"
 	"io"

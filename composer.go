@@ -1,6 +1,6 @@
 package composer
 
-import "github.com/fogleman/gg"
+import "gopkg.in/fogleman/gg.v1"
 
 type Image struct {
 	Width   int
