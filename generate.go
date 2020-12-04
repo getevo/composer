@@ -3,6 +3,7 @@ package composer
 import (
 	"fmt"
 	"github.com/chai2010/webp"
+	"github.com/disintegration/imaging"
 	"github.com/nfnt/resize"
 	"gopkg.in/fogleman/gg.v1"
 	"image"
@@ -45,7 +46,7 @@ func (o *Image) SaveJPG(path string, quality int) error {
 	if o.Context == nil {
 		return fmt.Errorf("empty context")
 	}
-	return o.Context.SaveJPG(path, quality)
+	return imaging.Save(o.Context.Image(), path, imaging.JPEGQuality(quality))
 }
 
 func (o *Image) SavePNG(path string) error {
@@ -60,7 +61,8 @@ func (o *Image) Rotate(angle float64) {
 }
 
 func (o *Image) EncodeJPG(w io.Writer, j *jpeg.Options) error {
-	return o.Context.EncodeJPG(w, j)
+	return imaging.Encode(w, o.Context.Image(), imaging.JPEG)
+
 }
 
 func (o *Image) EncodePNG(w io.Writer) error {
